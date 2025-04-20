@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @RestController
@@ -41,5 +42,14 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return  ResponseEntity.ok().build();
     }
+
+    //update api
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee>updateEmployee(@PathVariable Long id, @RequestBody Employee updatedEmp){
+        Employee emp=employeeService.updateEmployee(id,updatedEmp);
+        return ResponseEntity.ok(emp);
+    }
+
+
 
 }

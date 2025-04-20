@@ -38,4 +38,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeRepository.deleteById(id);
 
     }
+
+    @Override
+    public Employee updateEmployee(Long id,Employee updatedEmp){
+        Employee existing=employeeRepository.findById(id).orElseThrow(()->new RuntimeException("Employee not found"));
+        existing.setName(updatedEmp.getName());
+        existing.setRole(updatedEmp.getRole());
+
+        return employeeRepository.save(existing);
+    }
 }
